@@ -8,6 +8,7 @@ use App\Http\Resources\ConsumptionRecordResource;
 use App\Http\Resources\MeterResource;
 use App\Models\Meter;
 use App\Services\MeterService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class MeterController extends Controller
@@ -44,6 +45,7 @@ class MeterController extends Controller
 
     /**
      * Get meter details
+     * @throws AuthorizationException
      */
     public function show(Request $request, Meter $meter): MeterResource
     {
@@ -74,17 +76,18 @@ class MeterController extends Controller
 
     /**
      * Validate meter with utility provider
+     * @throws AuthorizationException
      */
-    public function validate(Request $request, Meter $meter): \Illuminate\Http\JsonResponse
+    public function validate(Request $request, Meter $rules): \Illuminate\Http\JsonResponse
     {
-        $this->authorize('update', $meter);
+        $this->authorize('update', $rules);
 
-        $result = $this->meterService->validateMeter($meter);
+        $result = $this->meterService->validateMeter($rules);
 
         if ($result) {
             return response()->json([
                 'message' => 'Meter validated successfully',
-                'meter' => new MeterResource($meter->fresh())
+                'meter' => new MeterResource($rules->fresh())
             ]);
         }
 
@@ -95,6 +98,7 @@ class MeterController extends Controller
 
     /**
      * Get consumption history for a meter
+     * @throws AuthorizationException
      */
     public function consumptionHistory(Request $request, Meter $meter): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
