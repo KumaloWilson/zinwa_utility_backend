@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\Meter;
-use App\Models\Meter;
 use App\Models\UserNotification;
 use App\Policies\MeterPolicy;
 use App\Policies\TokenPolicy;

@@ -23,7 +23,7 @@ class MeterController extends Controller
     /**
      * Get all meters for authenticated user
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $meters = $this->meterService->getUserMeters($request->user());
 
@@ -33,7 +33,7 @@ class MeterController extends Controller
     /**
      * Register a new meter
      */
-    public function store(RegisterMeterRequest $request)
+    public function store(RegisterMeterRequest $request): \Illuminate\Http\JsonResponse
     {
         $meter = $this->meterService->registerMeter($request->user(), $request->validated());
 

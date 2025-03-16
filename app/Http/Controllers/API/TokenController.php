@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TokenResource;
 use App\Models\Meter;
-use App\Models\Meter;
 use App\Services\TokenService;
 use Illuminate\Http\Request;
 
