@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Meter;
-use App\Models\Meter;
+use App\Models\MeterToken;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -65,7 +65,7 @@ class TokenService
         $tokenNumber = $this->generateUniqueTokenNumber();
 
         // Create the token
-        $token = Meter::create([
+        $token = MeterToken::create([
             'user_id' => $user->id,
             'meter_id' => $meter->id,
             'transaction_id' => $transaction->id,
@@ -88,7 +88,7 @@ class TokenService
      */
     public function verifyToken($tokenNumber)
     {
-        $token = Meter::where('token_number', $tokenNumber)->first();
+        $token = MeterToken::where('token_number', $tokenNumber)->first();
 
         if (!$token) {
             return null;
@@ -110,7 +110,7 @@ class TokenService
     /**
      * Use a token
      */
-    public function useToken(Meter $token): Meter
+    public function useToken(MeterToken $token)
     {
         // Mark token as used
         $token->status = 'used';
@@ -126,7 +126,7 @@ class TokenService
     /**
      * Generate a unique token number
      */
-    private function generateUniqueTokenNumber(): string
+    private function generateUniqueTokenNumber()
     {
         // In a real app, this would follow STS standards
         // For now, generate a random 20-digit number
@@ -136,7 +136,7 @@ class TokenService
         }
 
         // Ensure it's unique
-        if (Meter::where('token_number', $tokenNumber)->exists()) {
+        if (MeterToken::where('token_number', $tokenNumber)->exists()) {
             return $this->generateUniqueTokenNumber();
         }
 
