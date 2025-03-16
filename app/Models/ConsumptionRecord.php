@@ -48,7 +48,7 @@ class ConsumptionRecord extends Model
      */
     public function token()
     {
-        return $this->belongsTo(Token::class);
+        return $this->belongsTo(Meter::class);
     }
 }
 

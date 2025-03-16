@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\AuditLog;
 use App\Models\Meter;
-use App\Models\Token;
+use App\Models\Meter;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
@@ -18,7 +18,7 @@ class AdminService
     {
         $totalUsers = User::count();
         $totalMeters = Meter::count();
-        $totalTokens = Token::count();
+        $totalTokens = Meter::count();
 
         $totalRevenue = Transaction::where('status', 'completed')
             ->sum('amount');
@@ -204,7 +204,7 @@ class AdminService
      */
     public function getTokens(array $filters = []): \Illuminate\Pagination\LengthAwarePaginator
     {
-        $query = Token::with(['user', 'meter', 'transaction']);
+        $query = Meter::with(['user', 'meter', 'transaction']);
 
         // Apply filters
         if (isset($filters['status'])) {

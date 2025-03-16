@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\TokenResource;
 use App\Models\Meter;
-use App\Models\Token;
+use App\Models\Meter;
 use App\Services\TokenService;
 use Illuminate\Http\Request;
 
@@ -43,7 +43,7 @@ class TokenController extends Controller
     /**
      * Get token details
      */
-    public function show(Request $request, Token $token): TokenResource
+    public function show(Request $request, Meter $token): TokenResource
     {
         $this->authorize('view', $token);
 

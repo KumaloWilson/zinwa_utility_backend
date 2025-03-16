@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\Token;
+use App\Models\Meter;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserNotification;
@@ -90,7 +90,7 @@ class NotificationService
     /**
      * Send token generated notification
      */
-    public function sendTokenGeneratedNotification(User $user, Token $token)
+    public function sendTokenGeneratedNotification(User $user, Meter $token)
     {
         $notification = UserNotification::create([
             'user_id' => $user->id,

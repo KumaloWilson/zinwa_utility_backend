@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use App\Models\ConsumptionRecord;
 use App\Models\Meter;
-use App\Models\Token;
+use App\Models\Meter;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ConsumptionRecordFactory extends Factory
