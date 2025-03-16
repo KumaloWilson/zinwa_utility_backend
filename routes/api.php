@@ -21,11 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
-Route::get('/test', function () {
-    return response()->json(['message' => 'API route working']);
-});
-
 // Public routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -50,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Meters
     Route::apiResource('meters', MeterController::class);
-    Route::post('/meters/{meter}/validate', [MeterController::class, 'validate']);
+    Route::post('/meters/{meter}/validate', [MeterController::class, 'validateMeter']);
     Route::get('/meters/{meter}/consumption', [MeterController::class, 'consumptionHistory']);
 
     // Tokens

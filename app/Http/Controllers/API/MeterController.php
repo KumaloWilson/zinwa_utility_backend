@@ -23,7 +23,7 @@ class MeterController extends Controller
     /**
      * Get all meters for authenticated user
      */
-    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function index(Request $request)
     {
         $meters = $this->meterService->getUserMeters($request->user());
 
@@ -33,7 +33,7 @@ class MeterController extends Controller
     /**
      * Register a new meter
      */
-    public function store(RegisterMeterRequest $request): \Illuminate\Http\JsonResponse
+    public function store(RegisterMeterRequest $request)
     {
         $meter = $this->meterService->registerMeter($request->user(), $request->validated());
 
@@ -45,9 +45,8 @@ class MeterController extends Controller
 
     /**
      * Get meter details
-     * @throws AuthorizationException
      */
-    public function show(Request $request, Meter $meter): MeterResource
+    public function show(Request $request, Meter $meter)
     {
         $this->authorize('view', $meter);
 
@@ -57,7 +56,7 @@ class MeterController extends Controller
     /**
      * Update meter details
      */
-    public function update(Request $request, Meter $meter): \Illuminate\Http\JsonResponse
+    public function update(Request $request, Meter $meter)
     {
         $this->authorize('update', $meter);
 
@@ -78,16 +77,16 @@ class MeterController extends Controller
      * Validate meter with utility provider
      * @throws AuthorizationException
      */
-    public function validate(Request $request, Meter $rules): \Illuminate\Http\JsonResponse
+    public function validateMeter(Request $request, Meter $meter): \Illuminate\Http\JsonResponse
     {
-        $this->authorize('update', $rules);
+        $this->authorize('update', $meter);
 
-        $result = $this->meterService->validateMeter($rules);
+        $result = $this->meterService->validateMeter($meter);
 
         if ($result) {
             return response()->json([
                 'message' => 'Meter validated successfully',
-                'meter' => new MeterResource($rules->fresh())
+                'meter' => new MeterResource($meter->fresh())
             ]);
         }
 
@@ -98,9 +97,8 @@ class MeterController extends Controller
 
     /**
      * Get consumption history for a meter
-     * @throws AuthorizationException
      */
-    public function consumptionHistory(Request $request, Meter $meter): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+    public function consumptionHistory(Request $request, Meter $meter)
     {
         $this->authorize('view', $meter);
 
