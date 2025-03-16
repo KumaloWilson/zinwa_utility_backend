@@ -55,15 +55,15 @@ class User extends Authenticatable
     /**
      * Get the meters associated with the user.
      */
-//    public function meters()
-//    {
-//        return $this->hasMany(Meter::class);
-//    }
+    public function meters()
+    {
+        return $this->hasMany(Meter::class);
+    }
 
     /**
      * Get the tokens purchased by the user.
      */
-//    public function tokens(): \Illuminate\Database\Eloquent\Relations\HasMany
+//    public function tokens()
 //    {
 //        return $this->hasMany(MeterToken::class);
 //    }
@@ -71,7 +71,7 @@ class User extends Authenticatable
     /**
      * Get the transactions made by the user.
      */
-    public function transactions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function transactions()
     {
         return $this->hasMany(Transaction::class);
     }
@@ -79,7 +79,7 @@ class User extends Authenticatable
     /**
      * Get the notifications for the user.
      */
-    public function userNotifications(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function userNotifications()
     {
         return $this->hasMany(UserNotification::class);
     }
