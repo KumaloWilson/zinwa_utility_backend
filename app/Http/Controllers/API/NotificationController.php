@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class NotificationController extends Controller
 {
-    protected $notificationService;
+    protected NotificationService $notificationService;
 
     public function __construct(NotificationService $notificationService)
     {
@@ -20,22 +20,22 @@ class NotificationController extends Controller
     /**
      * Get all notifications for authenticated user
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $notifications = $this->notificationService->getUserNotifications($request->user());
-        
+
         return UserNotificationResource::collection($notifications);
     }
 
     /**
      * Mark notification as read
      */
-    public function markAsRead(Request $request, UserNotification $notification)
+    public function markAsRead(Request $request, UserNotification $notification): \Illuminate\Http\JsonResponse
     {
         $this->authorize('update', $notification);
-        
+
         $notification = $this->notificationService->markAsRead($notification);
-        
+
         return response()->json([
             'message' => 'Notification marked as read',
             'notification' => new UserNotificationResource($notification)
@@ -45,10 +45,10 @@ class NotificationController extends Controller
     /**
      * Mark all notifications as read
      */
-    public function markAllAsRead(Request $request)
+    public function markAllAsRead(Request $request): \Illuminate\Http\JsonResponse
     {
         $this->notificationService->markAllAsRead($request->user());
-        
+
         return response()->json([
             'message' => 'All notifications marked as read'
         ]);

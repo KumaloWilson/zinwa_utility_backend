@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    protected $paymentService;
+    protected PaymentService $paymentService;
 
     public function __construct(PaymentService $paymentService)
     {
@@ -20,17 +20,17 @@ class PaymentController extends Controller
     /**
      * Get all transactions for authenticated user
      */
-    public function transactions(Request $request)
+    public function transactions(Request $request): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $transactions = $this->paymentService->getUserTransactions($request->user());
-        
+
         return TransactionResource::collection($transactions);
     }
 
     /**
      * Initiate a payment
      */
-    public function initiate(Request $request)
+    public function initiate(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'meter_id' => 'required|exists:meters,id',
@@ -38,10 +38,10 @@ class PaymentController extends Controller
             'payment_method' => 'required|string|in:mobile_money,bank_transfer,card,cash',
             'payment_provider' => 'required_unless:payment_method,cash|string',
         ]);
-        
+
         $meter = Meter::findOrFail($request->meter_id);
         $this->authorize('view', $meter);
-        
+
         $result = $this->paymentService->initiatePayment(
             $request->user(),
             $meter,
@@ -49,7 +49,7 @@ class PaymentController extends Controller
             $request->payment_method,
             $request->payment_provider
         );
-        
+
         return response()->json([
             'message' => 'Payment initiated successfully',
             'transaction' => new TransactionResource($result['transaction']),
@@ -59,11 +59,12 @@ class PaymentController extends Controller
 
     /**
      * Verify a payment
+     * @throws \Exception
      */
-    public function verify(Request $request, $reference)
+    public function verify(Request $request, $reference): \Illuminate\Http\JsonResponse
     {
         $result = $this->paymentService->verifyPayment($reference);
-        
+
         if ($result['success']) {
             return response()->json([
                 'message' => 'Payment verified successfully',
@@ -71,7 +72,7 @@ class PaymentController extends Controller
                 'token' => $result['token'] ? $result['token']->token_number : null,
             ]);
         }
-        
+
         return response()->json([
             'message' => $result['message'] ?? 'Payment verification failed'
         ], 400);
@@ -80,16 +81,16 @@ class PaymentController extends Controller
     /**
      * Handle payment webhook
      */
-    public function webhook(Request $request)
+    public function webhook(Request $request): \Illuminate\Http\JsonResponse
     {
         $result = $this->paymentService->handleWebhook($request->all());
-        
+
         if ($result['success']) {
             return response()->json([
                 'message' => 'Webhook processed successfully'
             ]);
         }
-        
+
         return response()->json([
             'message' => $result['message'] ?? 'Failed to process webhook'
         ], 400);

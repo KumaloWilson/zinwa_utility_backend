@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class TariffController extends Controller
 {
-    protected $tariffService;
+    protected TariffService $tariffService;
 
     public function __construct(TariffService $tariffService)
     {
@@ -19,24 +19,25 @@ class TariffController extends Controller
     /**
      * Get all active tariffs
      */
-    public function index()
+    public function index(): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $tariffs = $this->tariffService->getActiveTariffs();
-        
+
         return TariffResource::collection($tariffs);
     }
 
     /**
      * Calculate price for units
+     * @throws \Exception
      */
-    public function calculate(Request $request)
+    public function calculate(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'units' => 'required|numeric|min:1',
         ]);
-        
+
         $result = $this->tariffService->calculatePrice($request->units);
-        
+
         return response()->json([
             'units' => $request->units,
             'base_amount' => $result['base_amount'],

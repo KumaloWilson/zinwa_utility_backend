@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    protected $userService;
+    protected UserService $userService;
 
     public function __construct(UserService $userService)
     {
@@ -20,7 +20,7 @@ class UserController extends Controller
     /**
      * Get user profile
      */
-    public function profile(Request $request)
+    public function profile(Request $request): UserResource
     {
         return new UserResource($request->user());
     }
@@ -28,10 +28,10 @@ class UserController extends Controller
     /**
      * Update user profile
      */
-    public function updateProfile(UpdateProfileRequest $request)
+    public function updateProfile(UpdateProfileRequest $request): \Illuminate\Http\JsonResponse
     {
         $user = $this->userService->updateProfile($request->user(), $request->validated());
-        
+
         return response()->json([
             'message' => 'Profile updated successfully',
             'user' => new UserResource($user)
@@ -41,25 +41,25 @@ class UserController extends Controller
     /**
      * Change user password
      */
-    public function changePassword(Request $request)
+    public function changePassword(Request $request): \Illuminate\Http\JsonResponse
     {
         $request->validate([
             'current_password' => 'required|string',
             'password' => 'required|string|min:8|confirmed',
         ]);
-        
+
         $result = $this->userService->changePassword(
             $request->user(),
             $request->current_password,
             $request->password
         );
-        
+
         if ($result) {
             return response()->json([
                 'message' => 'Password changed successfully'
             ]);
         }
-        
+
         return response()->json([
             'message' => 'Current password is incorrect'
         ], 400);
