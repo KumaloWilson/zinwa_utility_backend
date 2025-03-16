@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\TokenResource;
 use App\Models\Meter;
 use App\Services\TokenService;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Http\Request;
 
 class TokenController extends Controller
@@ -29,6 +30,7 @@ class TokenController extends Controller
 
     /**
      * Get tokens for a specific meter
+     * @throws AuthorizationException
      */
     public function meterTokens(Request $request, Meter $meter): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {

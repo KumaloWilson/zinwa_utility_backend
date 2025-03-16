@@ -60,9 +60,9 @@ class Meter extends Model
     /**
      * Get the tokens used for this meter.
      */
-    public function tokens()
+    public function tokens(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(MeterToken::class);
+        return $this->hasMany(Token::class);
     }
 
 
