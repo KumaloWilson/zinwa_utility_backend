@@ -6,7 +6,6 @@ use App\Models\Meter;
 use App\Models\MeterToken;
 use App\Models\Transaction;
 use App\Models\User;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 class TokenService

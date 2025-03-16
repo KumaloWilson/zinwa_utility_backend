@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use App\Models\Meter;
-use App\Models\Meter;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;

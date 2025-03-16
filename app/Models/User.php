@@ -60,15 +60,7 @@ class User extends Authenticatable
         return $this->hasMany(Meter::class);
     }
 
-    /**
-     * Get the tokens purchased by the user.
-     */
-//    public function tokens()
-//    {
-//        return $this->hasMany(MeterToken::class);
-//    }
-//
-//
+
     /**
      * Get the transactions made by the user.
      */

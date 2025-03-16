@@ -62,8 +62,9 @@ class Meter extends Model
      */
     public function tokens()
     {
-        return $this->hasMany(Token::class);
+        return $this->hasMany(MeterToken::class);
     }
+
 
     /**
      * Check if meter is active
