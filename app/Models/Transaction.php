@@ -62,7 +62,7 @@ class Transaction extends Model
      */
     public function token()
     {
-        return $this->hasOne(Token::class);
+        return $this->hasOne(Meter::class);
     }
 
     /**

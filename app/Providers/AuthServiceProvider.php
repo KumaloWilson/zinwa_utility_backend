@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Meter;
-use App\Models\Token;
+use App\Models\Meter;
 use App\Models\UserNotification;
 use App\Policies\MeterPolicy;
 use App\Policies\TokenPolicy;
@@ -19,7 +19,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Meter::class => MeterPolicy::class,
-        Token::class => TokenPolicy::class,
+        Meter::class => TokenPolicy::class,
         UserNotification::class => UserNotificationPolicy::class,
     ];
 

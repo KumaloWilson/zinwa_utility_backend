@@ -3,7 +3,7 @@
 namespace App\Services;
 
 use App\Models\Meter;
-use App\Models\Token;
+use App\Models\Meter;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
@@ -65,7 +65,7 @@ class TokenService
         $tokenNumber = $this->generateUniqueTokenNumber();
 
         // Create the token
-        $token = Token::create([
+        $token = Meter::create([
             'user_id' => $user->id,
             'meter_id' => $meter->id,
             'transaction_id' => $transaction->id,
@@ -88,7 +88,7 @@ class TokenService
      */
     public function verifyToken($tokenNumber)
     {
-        $token = Token::where('token_number', $tokenNumber)->first();
+        $token = Meter::where('token_number', $tokenNumber)->first();
 
         if (!$token) {
             return null;
@@ -110,7 +110,7 @@ class TokenService
     /**
      * Use a token
      */
-    public function useToken(Token $token): Token
+    public function useToken(Meter $token): Meter
     {
         // Mark token as used
         $token->status = 'used';
@@ -136,7 +136,7 @@ class TokenService
         }
 
         // Ensure it's unique
-        if (Token::where('token_number', $tokenNumber)->exists()) {
+        if (Meter::where('token_number', $tokenNumber)->exists()) {
             return $this->generateUniqueTokenNumber();
         }
 
