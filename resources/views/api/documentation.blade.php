@@ -467,9 +467,6 @@
                     </div>
                 </div>
 
-                <!-- Additional endpoints would continue here -->
-                <!-- For brevity, I'm showing just a couple of examples -->
-
                 <!-- Logout Endpoint -->
                 <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
                     <div class="p-6">
@@ -514,72 +511,683 @@
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Additional sections would continue here -->
-            <!-- For brevity, I'm showing just a couple of examples -->
+                <!-- Get User Endpoint -->
+                <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="method-badge method-get">GET</span>
+                                <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/user</h3>
+                            </div>
+                            <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                        </div>
 
-            <!-- Error Handling Section -->
-            <section id="errors" class="mb-16">
-                <div class="flex items-center space-x-4 mb-6">
-                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
+                        <p class="mb-4 text-slate-600 dark:text-slate-300">Get the authenticated user's details.</p>
+
+                        <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                                        <strong>Authentication Required:</strong> Bearer Token
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre><code class="language-json rounded-lg">{
+    "id": 1,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "phone": "+1234567890",
+    "role": "consumer",
+    "status": "active",
+    "email_verified": true,
+    "phone_verified": false,
+    "last_login_at": "2023-05-20T12:30:00.000000Z",
+    "created_at": "2023-05-20T12:00:00.000000Z",
+    "updated_at": "2023-05-20T12:30:00.000000Z"
+}</code></pre>
+                        </div>
                     </div>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Error Handling</h2>
                 </div>
 
-                <div class="prose prose-slate dark:prose-invert max-w-none">
-                    <p class="text-lg">
-                        The API uses standard HTTP status codes to indicate the success or failure of a request. In case of an error,
-                        the response will include a message explaining what went wrong.
-                    </p>
+                <!-- Email Verification Endpoint -->
+                <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="method-badge method-get">GET</span>
+                                <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/email/verify/{id}/{hash}</h3>
+                            </div>
+                            <span class="px-3 py-1 text-xs rounded-full bg-slate-100 text-slate-800 dark:bg-slate-700 dark:text-slate-300">Public</span>
+                        </div>
 
-                    <h3 class="text-xl font-semibold mt-8 mb-4">Common Error Codes</h3>
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
-                            <thead class="bg-slate-50 dark:bg-slate-700/50">
-                            <tr>
-                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status Code</th>
-                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Description</th>
-                            </tr>
-                            </thead>
-                            <tbody class="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">400</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Bad Request - The request was invalid or cannot be served</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">401</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Unauthorized - Authentication is required or has failed</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">403</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Forbidden - The authenticated user does not have permission to access the requested resource</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">404</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Not Found - The requested resource does not exist</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">422</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Unprocessable Entity - The request was well-formed but contains semantic errors (validation failed)</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">429</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Too Many Requests - The user has sent too many requests in a given amount of time</td>
-                            </tr>
-                            <tr>
-                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">500</td>
-                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Internal Server Error - An error occurred on the server</td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <p class="mb-4 text-slate-600 dark:text-slate-300">Verify a user's email address.</p>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre><code class="language-json rounded-lg">{
+    "message": "Email verified successfully"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Verification Notification Endpoint -->
+                <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="method-badge method-post">POST</span>
+                                <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/email/verification-notification</h3>
+                            </div>
+                            <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                        </div>
+
+                        <p class="mb-4 text-slate-600 dark:text-slate-300">Resend the email verification notification.</p>
+
+                        <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                                        <strong>Authentication Required:</strong> Bearer Token
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre><code class="language-json rounded-lg">{
+    "message": "Verification link sent"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone Verification Endpoint -->
+                <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="method-badge method-post">POST</span>
+                                <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/phone/verification</h3>
+                            </div>
+                            <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                        </div>
+
+                        <p class="mb-4 text-slate-600 dark:text-slate-300">Send a verification code to the user's phone.</p>
+
+                        <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                                        <strong>Authentication Required:</strong> Bearer Token
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-2">Request Parameters</h4>
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                                    <thead class="bg-slate-50 dark:bg-slate-700/50">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Parameter</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Required</th>
+                                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+                                    <tr>
+                                        <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">phone</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">string</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Yes</td>
+                                        <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Phone number to verify</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-6">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Request</h4>
+                                <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre><code class="language-json rounded-lg">{
+    "phone": "+1234567890"
+}</code></pre>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                            <pre><code class="language-json rounded-lg">{
+    "message": "Verification code sent to your phone"
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Continue with other user endpoints -->
+                <!-- For brevity, I'll add just a few more key endpoints -->
+
+                <!-- Meters Section -->
+                <section id="meters" class="mb-16 mt-24">
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Meters</h2>
                     </div>
 
-                    <h3 class="text-xl font-semibold mt-8 mb-4">Validation Error Example</h3>
-                    <pre><code class="language-json rounded-lg">{
+                    <!-- Get Meters Endpoint -->
+                    <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="method-badge method-get">GET</span>
+                                    <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/meters</h3>
+                                </div>
+                                <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                            </div>
+
+                            <p class="mb-4 text-slate-600 dark:text-slate-300">Get all meters for the authenticated user.</p>
+
+                            <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-800 dark:text-blue-200">
+                                            <strong>Authentication Required:</strong> Bearer Token
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                    <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <pre><code class="language-json rounded-lg">{
+    "data": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "meter_number": "ZW12345678",
+            "meter_type": "prepaid",
+            "location": "123 Main St, Harare",
+            "status": "active",
+            "last_reading": 1250.5,
+            "last_reading_date": "2023-05-15T10:00:00.000000Z",
+            "installation_date": "2023-01-01T00:00:00.000000Z",
+            "is_validated": true,
+            "validation_date": "2023-01-02T00:00:00.000000Z",
+            "notes": "Main residence meter",
+            "created_at": "2023-01-01T00:00:00.000000Z",
+            "updated_at": "2023-05-15T10:00:00.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http://api.zinwa.com/api/meters?page=1",
+        "last": "http://api.zinwa.com/api/meters?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://api.zinwa.com/api/meters",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Register Meter Endpoint -->
+                    <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                        <div class="p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center space-x-3">
+                                    <span class="method-badge method-post">POST</span>
+                                    <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/meters</h3>
+                                </div>
+                                <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                            </div>
+
+                            <p class="mb-4 text-slate-600 dark:text-slate-300">Register a new meter for the authenticated user.</p>
+
+                            <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-blue-800 dark:text-blue-200">
+                                            <strong>Authentication Required:</strong> Bearer Token
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="text-sm font-semibold text-slate-900 dark:text-white mb-2">Request Parameters</h4>
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                                        <thead class="bg-slate-50 dark:bg-slate-700/50">
+                                        <tr>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Parameter</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Type</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Required</th>
+                                            <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Description</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">meter_number</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">string</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Yes</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Unique meter number</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">meter_type</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">string</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">No</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Type of meter (prepaid, postpaid)</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">location</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">string</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">No</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Physical location of the meter</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">installation_date</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">date</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">No</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Date of installation</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">notes</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">string</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">No</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Additional notes about the meter</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">validate</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">boolean</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">No</td>
+                                            <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Whether to validate the meter with the utility provider</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Request</h4>
+                                    <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <pre><code class="language-json rounded-lg">{
+    "meter_number": "ZW87654321",
+    "meter_type": "prepaid",
+    "location": "456 Park Ave, Bulawayo",
+    "notes": "Business premises meter",
+    "validate": true
+}</code></pre>
+                            </div>
+
+                            <div>
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (201 Created)</h4>
+                                    <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                        </svg>
+                                        Copy
+                                    </button>
+                                </div>
+                                <pre><code class="language-json rounded-lg">{
+    "message": "Meter registered successfully",
+    "meter": {
+        "id": 2,
+        "user_id": 1,
+        "meter_number": "ZW87654321",
+        "meter_type": "prepaid",
+        "location": "456 Park Ave, Bulawayo",
+        "status": "active",
+        "last_reading": 0,
+        "last_reading_date": null,
+        "installation_date": "2023-05-20T13:30:00.000000Z",
+        "is_validated": true,
+        "validation_date": "2023-05-20T13:30:00.000000Z",
+        "notes": "Business premises meter",
+        "created_at": "2023-05-20T13:30:00.000000Z",
+        "updated_at": "2023-05-20T13:30:00.000000Z"
+    }
+}</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tokens Section -->
+                    <section id="tokens" class="mb-16 mt-24">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9a2 2 0 10-4 0v5a2 2 0 01-2 2h6m-6-4h4m8 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                            </div>
+                            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tokens</h2>
+                        </div>
+
+                        <!-- Get Tokens Endpoint -->
+                        <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center space-x-3">
+                                        <span class="method-badge method-get">GET</span>
+                                        <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/tokens</h3>
+                                    </div>
+                                    <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                                </div>
+
+                                <p class="mb-4 text-slate-600 dark:text-slate-300">Get all tokens for the authenticated user.</p>
+
+                                <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                    <div class="flex">
+                                        <div class="flex-shrink-0">
+                                            <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                        <div class="ml-3">
+                                            <p class="text-sm text-blue-800 dark:text-blue-200">
+                                                <strong>Authentication Required:</strong> Bearer Token
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <div class="flex items-center justify-between mb-2">
+                                        <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                        <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                            </svg>
+                                            Copy
+                                        </button>
+                                    </div>
+                                    <pre><code class="language-json rounded-lg">{
+    "data": [
+        {
+            "id": 5,
+            "user_id": 1,
+            "meter_id": 1,
+            "transaction_id": 5,
+            "token_number": "12345678901234567890",
+            "units": 50.5,
+            "amount": 75.75,
+            "status": "used",
+            "generated_at": "2023-05-15T09:00:00.000000Z",
+            "used_at": "2023-05-15T10:00:00.000000Z",
+            "expires_at": "2023-06-14T09:00:00.000000Z",
+            "created_at": "2023-05-15T09:00:00.000000Z",
+            "updated_at": "2023-05-15T10:00:00.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http://api.zinwa.com/api/tokens?page=1",
+        "last": "http://api.zinwa.com/api/tokens?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://api.zinwa.com/api/tokens",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payments Section -->
+                        <section id="payments" class="mb-16 mt-24">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Payments</h2>
+                            </div>
+
+                            <!-- Get Transactions Endpoint -->
+                            <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="method-badge method-get">GET</span>
+                                            <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/transactions</h3>
+                                        </div>
+                                        <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                                    </div>
+
+                                    <p class="mb-4 text-slate-600 dark:text-slate-300">Get all transactions for the authenticated user.</p>
+
+                                    <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-800 dark:text-blue-200">
+                                                    <strong>Authentication Required:</strong> Bearer Token
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                            <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                                Copy
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-json rounded-lg">{
+    "data": [
+        {
+            "id": 6,
+            "user_id": 1,
+            "meter_id": 1,
+            "reference": "TXN-ghijkl5678",
+            "amount": 150.00,
+            "payment_method": "test",
+            "payment_provider": null,
+            "status": "completed",
+            "currency": "USD",
+            "description": "Test token generation",
+            "metadata": null,
+            "completed_at": "2023-05-20T15:00:00.000000Z",
+            "refunded_at": null,
+            "created_at": "2023-05-20T15:00:00.000000Z",
+            "updated_at": "2023-05-20T15:00:00.000000Z"
+        }
+    ],
+    "links": {
+        "first": "http://api.zinwa.com/api/transactions?page=1",
+        "last": "http://api.zinwa.com/api/transactions?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://api.zinwa.com/api/transactions",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Error Handling Section -->
+                            <section id="errors" class="mb-16 mt-24">
+                                <div class="flex items-center space-x-4 mb-6">
+                                    <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                    </div>
+                                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Error Handling</h2>
+                                </div>
+
+                                <div class="prose prose-slate dark:prose-invert max-w-none">
+                                    <p class="text-lg">
+                                        The API uses standard HTTP status codes to indicate the success or failure of a request. In case of an error,
+                                        the response will include a message explaining what went wrong.
+                                    </p>
+
+                                    <h3 class="text-xl font-semibold mt-8 mb-4">Common Error Codes</h3>
+                                    <div class="overflow-x-auto">
+                                        <table class="min-w-full divide-y divide-slate-200 dark:divide-slate-700">
+                                            <thead class="bg-slate-50 dark:bg-slate-700/50">
+                                            <tr>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status Code</th>
+                                                <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">Description</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody class="bg-white dark:bg-slate-800 divide-y divide-slate-200 dark:divide-slate-700">
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">400</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Bad Request - The request was invalid or cannot be served</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">401</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Unauthorized - Authentication is required or has failed</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">403</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Forbidden - The authenticated user does not have permission to access the requested resource</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">404</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Not Found - The requested resource does not exist</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">422</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Unprocessable Entity - The request was well-formed but contains semantic errors (validation failed)</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">429</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Too Many Requests - The user has sent too many requests in a given amount of time</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-4 py-3 text-sm font-medium text-slate-900 dark:text-white">500</td>
+                                                <td class="px-4 py-3 text-sm text-slate-500 dark:text-slate-400">Internal Server Error - An error occurred on the server</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <h3 class="text-xl font-semibold mt-8 mb-4">Validation Error Example</h3>
+                                    <pre><code class="language-json rounded-lg">{
     "message": "The given data was invalid.",
     "errors": {
         "email": [
@@ -591,16 +1199,330 @@
     }
 }</code></pre>
 
-                    <h3 class="text-xl font-semibold mt-8 mb-4">Authentication Error Example</h3>
-                    <pre><code class="language-json rounded-lg">{
+                                    <h3 class="text-xl font-semibold mt-8 mb-4">Authentication Error Example</h3>
+                                    <pre><code class="language-json rounded-lg">{
     "message": "Unauthenticated."
 }</code></pre>
 
-                    <h3 class="text-xl font-semibold mt-8 mb-4">Authorization Error Example</h3>
-                    <pre><code class="language-json rounded-lg">{
+                                    <h3 class="text-xl font-semibold mt-8 mb-4">Authorization Error Example</h3>
+                                    <pre><code class="language-json rounded-lg">{
     "message": "Unauthorized. You do not have the required role to access this resource."
 }</code></pre>
-                </div>
+                                </div>
+                            </section>
+                        </section>
+
+                        <!-- Tariffs Section -->
+                        <section id="tariffs" class="mb-16 mt-24">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Tariffs</h2>
+                            </div>
+
+                            <!-- Get Tariffs Endpoint -->
+                            <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="method-badge method-get">GET</span>
+                                            <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/tariffs</h3>
+                                        </div>
+                                        <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                                    </div>
+
+                                    <p class="mb-4 text-slate-600 dark:text-slate-300">Get all active tariffs.</p>
+
+                                    <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-800 dark:text-blue-200">
+                                                    <strong>Authentication Required:</strong> Bearer Token
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                            <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                                Copy
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-json rounded-lg">{
+    "data": [
+        {
+            "id": 1,
+            "name": "Residential Basic",
+            "description": "Basic tariff for residential customers (0-50 units)",
+            "rate_per_unit": 0.50,
+            "min_units": 0,
+            "max_units": 50,
+            "tax_percentage": 5.0,
+            "service_fee": 2.00,
+            "is_active": true,
+            "effective_from": "2023-01-01T00:00:00.000000Z",
+            "effective_to": null,
+            "created_at": "2023-01-01T00:00:00.000000Z",
+            "updated_at": "2023-01-01T00:00:00.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "Residential Standard",
+            "description": "Standard tariff for residential customers (51-200 units)",
+            "rate_per_unit": 0.75,
+            "min_units": 51,
+            "max_units": 200,
+            "tax_percentage": 5.0,
+            "service_fee": 2.00,
+            "is_active": true,
+            "effective_from": "2023-01-01T00:00:00.000000Z",
+            "effective_to": null,
+            "created_at": "2023-01-01T00:00:00.000000Z",
+            "updated_at": "2023-01-01T00:00:00.000000Z"
+        }
+    ]
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Notifications Section -->
+                        <section id="notifications" class="mb-16 mt-24">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Notifications</h2>
+                            </div>
+
+                            <!-- Get Notifications Endpoint -->
+                            <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="method-badge method-get">GET</span>
+                                            <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/notifications</h3>
+                                        </div>
+                                        <span class="px-3 py-1 text-xs rounded-full bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300">Authenticated</span>
+                                    </div>
+
+                                    <p class="mb-4 text-slate-600 dark:text-slate-300">Get all notifications for the authenticated user.</p>
+
+                                    <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-800 dark:text-blue-200">
+                                                    <strong>Authentication Required:</strong> Bearer Token
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                            <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                                Copy
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-json rounded-lg">{
+    "data": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "title": "Token Generated",
+            "message": "Your token for 50 units has been generated successfully. Token: 34567890123456789012",
+            "type": "token",
+            "read_at": null,
+            "data": {
+                "token_id": 7,
+                "token_number": "34567890123456789012",
+                "units": 50,
+                "meter_id": 1,
+                "meter_number": "ZW12345678"
+            },
+            "created_at": "2023-05-20T16:05:00.000000Z",
+            "updated_at": "2023-05-20T16:05:00.000000Z",
+            "is_read": false
+        }
+    ],
+    "links": {
+        "first": "http://api.zinwa.com/api/notifications?page=1",
+        "last": "http://api.zinwa.com/api/notifications?page=1",
+        "prev": null,
+        "next": null
+    },
+    "meta": {
+        "current_page": 1,
+        "from": 1,
+        "last_page": 1,
+        "path": "http://api.zinwa.com/api/notifications",
+        "per_page": 15,
+        "to": 1,
+        "total": 1
+    }
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Admin Section -->
+                        <section id="admin" class="mb-16 mt-24">
+                            <div class="flex items-center space-x-4 mb-6">
+                                <div class="h-12 w-12 rounded-xl bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Admin</h2>
+                            </div>
+
+                            <div class="mb-6 p-4 bg-amber-50 border-l-4 border-amber-500 rounded-r-lg dark:bg-amber-900/30 dark:border-amber-600">
+                                <div class="flex">
+                                    <div class="flex-shrink-0">
+                                        <svg class="h-5 w-5 text-amber-500 dark:text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <div class="ml-3">
+                                        <p class="text-sm text-amber-800 dark:text-amber-200">
+                                            <strong>Note:</strong> All admin endpoints require authentication with an admin user.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Get Dashboard Endpoint -->
+                            <div class="endpoint-card mb-8 bg-white dark:bg-slate-800 rounded-xl shadow-md overflow-hidden">
+                                <div class="p-6">
+                                    <div class="flex items-center justify-between mb-4">
+                                        <div class="flex items-center space-x-3">
+                                            <span class="method-badge method-get">GET</span>
+                                            <h3 class="text-lg font-semibold font-mono text-slate-900 dark:text-white">/admin/dashboard</h3>
+                                        </div>
+                                        <span class="px-3 py-1 text-xs rounded-full bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300">Admin</span>
+                                    </div>
+
+                                    <p class="mb-4 text-slate-600 dark:text-slate-300">Get dashboard statistics.</p>
+
+                                    <div class="mb-6 p-4 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg dark:bg-blue-900/30 dark:border-blue-600">
+                                        <div class="flex">
+                                            <div class="flex-shrink-0">
+                                                <svg class="h-5 w-5 text-blue-500 dark:text-blue-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                            <div class="ml-3">
+                                                <p class="text-sm text-blue-800 dark:text-blue-200">
+                                                    <strong>Authentication Required:</strong> Bearer Token (Admin)
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="flex items-center justify-between mb-2">
+                                            <h4 class="text-sm font-semibold text-slate-900 dark:text-white">Example Response (200 OK)</h4>
+                                            <button class="copy-button text-xs text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-300 flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                                                </svg>
+                                                Copy
+                                            </button>
+                                        </div>
+                                        <pre><code class="language-json rounded-lg">{
+    "total_users": 15,
+    "total_meters": 20,
+    "total_tokens": 150,
+    "total_revenue": 12500.75,
+    "recent_transactions": [
+        {
+            "id": 7,
+            "user_id": 1,
+            "meter_id": 1,
+            "reference": "TXN-mnopqr9012",
+            "amount": 75.00,
+            "payment_method": "mobile_money",
+            "payment_provider": "EcoCash",
+            "status": "completed",
+            "currency": "USD",
+            "description": "Purchase of 50 units for meter ZW12345678",
+            "metadata": null,
+            "completed_at": "2023-05-20T16:05:00.000000Z",
+            "refunded_at": null,
+            "created_at": "2023-05-20T16:00:00.000000Z",
+            "updated_at": "2023-05-20T16:05:00.000000Z",
+            "user": {
+                "id": 1,
+                "name": "John Smith",
+                "email": "john@example.com"
+            },
+            "meter": {
+                "id": 1,
+                "meter_number": "ZW12345678"
+            }
+        }
+    ],
+    "users_by_role": [
+        {
+            "role": "admin",
+            "count": 1
+        },
+        {
+            "role": "vendor",
+            "count": 2
+        },
+        {
+            "role": "consumer",
+            "count": 12
+        }
+    ],
+    "transactions_by_day": [
+        {
+            "date": "2023-05-01",
+            "total": 450.00
+        },
+        {
+            "date": "2023-05-15",
+            "total": 75.75
+        },
+        {
+            "date": "2023-05-20",
+            "total": 225.00
+        }
+    ]
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </section>
+                </section>
             </section>
         </div>
     </main>
